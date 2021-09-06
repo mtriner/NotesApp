@@ -32,7 +32,9 @@ const Main = () => {
 					placeholder="> Add a note"
 					placeholderTextColor='#EEE'
 					underlineColorAndroid='transparent'
-					onSubmitEditing={addNote}>
+					onSubmitEditing={addNote}
+					returnKeyType="done"
+					multiline>
 				</TextInput>
 			</View>
 			<View style={styles.header}>
