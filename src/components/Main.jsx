@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, Button } from 'react-native';
 import Note from './Notes';
 
 const Main = () => {
 	const [notes, setNotes] = useState([]);
 	const [inputVal, setInputVal] = useState('');
 
-	const addNote = useCallback(() => {
+	const addNote = () => {
 		if (inputVal.length) {
 			const d = new Date();
 			const payload = {
@@ -16,7 +16,7 @@ const Main = () => {
 			setNotes([payload, ...notes])
 			setInputVal('');
 		}
-	}, [notes, inputVal]);
+	}
 
 	const onDelete = useCallback((i) => () => {
 		notes.splice(i, 1);
@@ -24,29 +24,32 @@ const Main = () => {
 	}, [notes]);
 
 	return (
-		<View style = {styles.container}>
-			<View style = {styles.header}>
-				<Text style = {styles.headerText}>- Notes -</Text>
-			</View>
-			<ScrollView style = {styles.scrollContainer}>
-				{notes.map((item, i) => (
-					<Note key = {i} data = {item} onDelete = {onDelete(i)}/>
-				))}
-			</ScrollView>
-			<View style = {styles.footer}>
-				<TextInput onChangeText = {(userInput) => setInputVal(userInput)} value = {inputVal} style = {styles.textInput} placeholder = "> Add a note" placeholderTextColor = '#EEE' underlineColorAndroid = 'transparent'>
+		<View style={styles.container}>
+			<View style={styles.footer}>
+				<TextInput onChangeText={(userInput) => setInputVal(userInput)}
+					value={inputVal}
+					style={styles.textInput}
+					placeholder="> Add a note"
+					placeholderTextColor='#EEE'
+					underlineColorAndroid='transparent'
+					onSubmitEditing={addNote}>
 				</TextInput>
 			</View>
-			<TouchableOpacity onPress = {addNote()} style ={styles.addButton}>
-				<Text style = {styles.addButtonText}>+</Text>
-			</TouchableOpacity>
+			<View style={styles.header}>
+				<Text style={styles.headerText}>- Notes -</Text>
+			</View>
+			<ScrollView style={styles.scrollContainer}>
+				{notes.map((item, i) => (
+					<Note key={i} data={item} onDelete={onDelete(i)} />
+				))}
+			</ScrollView>
 		</View>
 	)
 }
 
 const styles = StyleSheet.create({
 	container: {
-	  flex: 1,
+		flex: 1,
 	},
 	header: {
 		backgroundColor: '#3D3D3D',
