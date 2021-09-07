@@ -9,8 +9,10 @@ const Note = ({ data, onDelete}) => {
 			<Text style = {styles.noteText}>{date}</Text>
 			<Text style = {styles.noteText}>{note}</Text>
 
-			<TouchableOpacity onPress = {onDelete} style = {styles.noteDelete}>
-				<Text style = {styles.noteDeleteText}>X</Text>
+			<TouchableOpacity
+				onPress = {onDelete}
+				style = {styles.noteDelete}>
+					<Text style = {styles.noteDeleteText}>X</Text>
 			</TouchableOpacity>
 		</View>
 	)

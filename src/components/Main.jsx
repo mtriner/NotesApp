@@ -26,7 +26,8 @@ const Main = () => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.footer}>
-				<TextInput onChangeText={(userInput) => setInputVal(userInput)}
+				<TextInput
+					onChangeText={(userInput) => setInputVal(userInput)}
 					value={inputVal}
 					style={styles.textInput}
 					placeholder="> Add a note"
